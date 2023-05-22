@@ -2,24 +2,52 @@
 // import ViewDirectorBasedOnUserAuthStatus from '../utils/viewDirector';
 import 'bootstrap'; // import bootstrap elements and js
 import '../styles/main.scss';
+import getRequest from '../api/promises';
 
-const init = () => {
+getRequest().then(console.warn);
+
+const jokeOnDom = () => {
   document.querySelector('#app').innerHTML = `
-    <h1>HELLO! You are up and running!</h1>
-    <small>Open your dev tools</small><br />
-    <button class="btn btn-danger" id="click-me">Click ME!</button><br />
-    <hr />
-    <h2>These are font awesome icons:</h2>
-    <i class="fas fa-user fa-4x"></i> <i class="fab fa-github-square fa-5x"></i>
-  `;
-  console.warn('YOU ARE UP AND RUNNING!');
-
-  document
-    .querySelector('#click-me')
-    .addEventListener('click', () => console.warn('You clicked that button!'));
-
-  // USE WITH FIREBASE AUTH
-  // ViewDirectorBasedOnUserAuthStatus();
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">BIG BAD PUN MACHINE</h5>
+      <div id="joke-box">
+        <div id="joke-setup"></div>
+        <div id="joke-delivery"></div>
+      </div>
+  </div>
+    <button id="jokeBtn" class="btn btn-primary">GET A JOKE</button>
+  </div>
+</div>`;
 };
 
-init();
+const startApp = () => {
+  jokeOnDom();
+};
+
+startApp();
+
+const getAJoke = document.querySelector('#jokeBtn');
+const jokeSetup = document.querySelector('#joke-setup');
+const jokeDelivery = document.querySelector('#joke-delivery');
+// const jokeBox = document.querySelector('#joke-box');
+
+let data = '';
+getAJoke.addEventListener('click', () => {
+  console.warn((getAJoke).innerText);
+
+  if (getAJoke.innerText === 'GET A JOKE') {
+    getRequest().then((joke) => {
+      console.warn(joke.setup);
+      jokeSetup.innerHTML = joke.setup;
+      data = joke;
+      getAJoke.innerText = 'GET PUNCHLINE';
+    });
+  } else if (getAJoke.innerText === 'GET PUNCHLINE') {
+    console.warn(data.delivery);
+    jokeDelivery.innerHTML = data.delivery;
+    getAJoke.innerText = 'GET A NEW JOKE';
+  } else {
+    window.location.reload();
+  }
+});
