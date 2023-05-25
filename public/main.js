@@ -4,20 +4,21 @@ import 'bootstrap'; // import bootstrap elements and js
 import '../styles/main.scss';
 import getRequest from '../api/promises';
 
-getRequest().then(console.warn);
+getRequest().then(console.warn).catch(console.error);
 
 const jokeOnDom = () => {
   document.querySelector('#app').innerHTML = `
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">BIG BAD PUN MACHINE</h5>
-      <div id="joke-box">
-        <div id="joke-setup"></div>
-        <div id="joke-delivery"></div>
+  <div id="main-container">
+    <h1 class="card-title">BIG BAD PUN MACHINE</h1>
+    <div class="card">
+      <div class="card-body">
+        <div id="joke-box">
+          <div id="joke-setup"></div>
+          <div id="joke-delivery"></div>
+        </div>
       </div>
-  </div>
-    <button id="jokeBtn" class="btn btn-primary">GET A JOKE</button>
-  </div>
+      <button id="jokeBtn" class="btn btn-primary">GET A JOKE</button>
+    </div>
 </div>`;
 };
 

@@ -3,8 +3,71 @@
 
 
 body {
-  background-color: antiquewhite;
+  background-color: peachpuff;
   color: brown;
   text-align: center;
-  margin-top: 100px;
+  margin: 100px;
+  display: flex;
+  justify-items: center;
+}
+
+.card {
+  width: 25rem;
+  height: 25rem;
+  padding: 20px;
+  border-radius: 50%;
+  color: white;
+  background-color: goldenrod;
+  font-family: 'Raleway', sans-serif;
+  font-size: large;
+  border: 4px dotted white;
+}
+
+.card-title {
+  font-family: 'Cherry Bomb One', cursive;
+  font-size: 100px;
+  align-self: center;
+  margin-bottom: 30px;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+#main-container {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#joke-box {
+  margin: 15px;
+}
+
+#joke-setup {
+  margin: 25px;
+}
+
+#joke-delivery {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#jokeBtn {
+  width: 50%;
+  align-self: center;
+  margin-bottom: 70px;
+  background-color: rgb(210, 91, 91);
+  border: brown solid 1px;
+}
+
+#jokeBtn:hover {
+  background-color: brown;
+}
+
+#jokeBtn:active {
+  background-color: rgb(107, 37, 37);
 }
